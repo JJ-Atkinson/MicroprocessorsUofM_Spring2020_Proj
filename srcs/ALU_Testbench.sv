@@ -1,12 +1,9 @@
 `timescale 1ns/1ps
 module test_alu32 ();
-
- reg [31:0] A, B;
- reg [2:0] F;
- wire [31:0] Y;
- wire Z;
-
- alu32 ALU (A,B,F,Y,Z);
+ logic [31:0] A, B, Y;
+ logic [2:0] F;
+ logic Z,Ovf;
+ alu32 ALU (A,B,F,Y,Z,Ovf);
 
  initial begin
  A = 32'h00000000; B = 32'h00000000; F = 3'h2; #10;
