@@ -1,1 +1,2 @@
-module ALU
+module ALU ();
+
