@@ -15,5 +15,3 @@ module dataMemory #(parameter M = 32)(CLK, WE, A, RD, WD);
     if(WE)
       RAM[A[M-1:2]] <= WD;
 endmodule
-  
-  
