@@ -1,4 +1,4 @@
-module #(parameter N = 32)ALU(A,B,F,Y, Ovf);
+module ALU #(parameter N = 32)(A,B,F,Y, Ovf);
 
 	input logic [N-1:0] A,B;
 	input logic [2:0] F;
