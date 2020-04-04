@@ -1,4 +1,4 @@
-module ALU(A,B,F,Y Ovf);
+module ALU(A,B,F,Y, Ovf);
 
 input logic [31:0] A,B;
 input logic [2:0] F;
