@@ -17,6 +17,6 @@ always @ (*)
 		2'b00 : Y = A & Bout; // Ands A and B or ~B
 		2'b01 : Y = A | Bout; // Ors A and B or ~B
 		2'b10 : Y = sum;      // Adds together A and B or ~B(-B)
-		2'b11 : Y = sum[31];  //  Checks if MSB is 1(-) or 0(+)
+		2'b11 : Y = sum[N-1];  //  Checks if MSB is 1(-) or 0(+)
 	endcase
 endmodule
