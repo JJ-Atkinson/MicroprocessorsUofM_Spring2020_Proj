@@ -1,11 +1,11 @@
 // Register File
 
-module regfile (input clk,
-					 input we3
-					 input [4:0] ra1, ra2, wa3
-					 input [31:0] wd3,
-					 output [31:0 rd1, rd2]);
-reg [31:0] rf[31:0];
+module regfile (input logic clk,
+					 input logic we3,
+					 input logic [4:0] ra1, ra2, wa3,
+					 input logic [31:0] wd3,
+					 output logic [31:0] rd1, rd2);
+logic [31:0] rf[31:0];
 // three ported refister file
 // read two ports combinationally
 // write third port on rising edge of clock
@@ -14,16 +14,16 @@ reg [31:0] rf[31:0];
 always @ (posedge clk)
 	if (we3) rf[wa3] <= wd3;
 
-	assign rd1 = (ra1 ! = 0) ? rf[ra1] : 0;
-	assign rd2 = (ra2 ! = 0) ? rf[ra2] : 0;
+	assign rd1 = (ra1 != 0) ? rf[ra1] : 0;
+	assign rd2 = (ra2 != 0) ? rf[ra2] : 0;
 	
 endmodule
 
 //----------------------------------------------------------------
 
 // Adder
-module adder (input [31:0] a,b,
-				  output[31:0] y);
+module adder (input [31:0] a,b,		// Input Adding PC + 4; Output = PCPlus4
+		output[31:0] y);
  assign y = a + b;
 endmodule
 
@@ -32,12 +32,12 @@ endmodule
 // Instruction Memory
 
 module imem(input [5:0]  a,
-				output[31:0] rd);
+		output[31:0] rd);
 reg[31:0] RAM[63:0];
 
 initial
 	begin
-		$readmemh("memfile.dat".RAM);
+		$readmemh("memfile.dat", RAM);	//We need to write a data file. 
 	end
 assign rd = RAM[a]; // word alligned
 endmodule
