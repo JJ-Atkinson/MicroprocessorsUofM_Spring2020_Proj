@@ -19,7 +19,6 @@ always @ (posedge clk)
 	
 endmodule
 
-/----------------------------------------------------------------
 
 // Instruction Memory
 
