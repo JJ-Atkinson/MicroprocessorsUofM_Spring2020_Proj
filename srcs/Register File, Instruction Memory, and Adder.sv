@@ -19,15 +19,7 @@ always @ (posedge clk)
 	
 endmodule
 
-//----------------------------------------------------------------
-
-// Adder
-module adder (input [31:0] a,b,		// Input Adding PC + 4; Output = PCPlus4
-		output[31:0] y);
- assign y = a + b;
-endmodule
-
-//----------------------------------------------------------------
+/----------------------------------------------------------------
 
 // Instruction Memory
 
