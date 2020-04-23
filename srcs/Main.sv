@@ -1,43 +1,33 @@
 `timescale 1ns/1ps
 
-
-
-module Main();
+module SPRING_2020_MIPS();
 
 wire MemtoReg, PCSrc, MemWrite, Banch,
        	ALUSrc, RegDst, RegWrite, 
-	Clk, Zero, ALUResult, PCSrc,
-	ReadData, Jump, Ovf;
+	Clk, Zero, 
+	Jump, Ovf;
 
-reg [31:0] PC;
 
 wire [31:0] Instr, PCPlus4, ALUResult, WriteData,
 	SrcA, SrcB, ImmExt, PCBranch, ReadData, Result, PCPrimePrime,
-		PCPrime, RD2;
+		PCPrime, RD2, PC;
 
 wire [2:0] ALUControl;
 
 
-MultiPlex mp1 (in1, in2, PCPrimePrime, PCSrc);
+MultiPlex mp1 (PCPlus4, PCBRanch, PCPrimePrime, PCSrc);
 MultiPlex mp2 (PCPrimePrime, {4'b0, Instr[25:0], 2'b0},
        	PCPrime, Jump);
 
 // needs clk
 
-// needs im
+imem instr_memory (PC, Instr);
 
 assign PCPlus4 = 4 + PC;
 
 controlUnit cu (Clk, Instr[31:25], Instr[5:0], MemtoReg, MemWrite, Branch, ALUControl, ALUSrc, RegDst, RegWrite, Jump);
 
 assign PCSrc = Branch & Zero;
-
-
-//input logic clk,
-//			    input logic we3,
-//				input logic [4:0] ra1, ra2, wa3,
-//				input logic [31:0] wd3,
-//				output logic [31:0] rd1, rd2
 
 regfile register_file (Clk, RegWrite, Instr[25:21], Instr[20:16], A3_registerfile, Result, SrcA, RD2);
 
