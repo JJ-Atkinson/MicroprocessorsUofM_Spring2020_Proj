@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module SPRING_2020_MIPS();
+module Main();
 
 wire MemtoReg, PCSrc, MemWrite, Banch,
        	ALUSrc, RegDst, RegWrite, 
